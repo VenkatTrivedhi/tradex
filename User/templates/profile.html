@@ -1,0 +1,46 @@
+{% load humanize%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/tradex.css">
+    <title>Profile</title>
+</head>
+<body>
+    {%block content%}
+<div class="nav">
+            <p class="nav-item" id="user">{{user.first_name}} {{user.last_name}}</p>
+            <a href="http://127.0.0.1:8000/logout"><button class="nav-item" id="logout">Logout</button></a>
+</div>
+<div class="container">
+    {% if msg %}
+        <script>
+        alert({{msg}})
+        </script>
+    {% endif %}
+
+     <form action=""  method="POST">
+         {% csrf_token %}
+         {{ form.text }} <br>
+         <button type="submit" >post</button>
+     </form>
+
+     <ul id="post">
+         {% for post in  posts %}
+             <li id="posted_by" >
+                 <span id ="posted_by"> {{ post.user }} </span>
+                 <span id ="post_time"> ({{post.created_at|naturaltime}}) </span><br>
+                 <span id = "posted"> {{post.text}} </span><br>
+             </li><br>
+            
+             {% endfor %}
+
+     </ul>
+
+
+
+</div>
+{% endblock %}
+
+</body>
+</html>

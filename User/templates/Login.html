@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="../static/tradex.css">
+
+</head>
+
+<body>
+{% block content %}
+<div class="nav"></div>
+
+<div class="container">
+    {% if msg %}
+        <span id="msg">{{ msg }}</span>
+    {% endif %}
+
+    {% if error %}
+        <span id="error">{{ error }}</span>
+    {% endif %}
+    <h1>Login</h1>
+     <form  method="POST">
+         {% csrf_token %}
+         {{ form.username }}<br>
+         {{ form.password }}<br>
+         <button type="submit" href="/login">Login</button>
+     </form>
+
+     <p>Don't have an account?? <a href="/signup">Sign up</a></p>
+</div>
+{% endblock %}
+</body>
+</html>
